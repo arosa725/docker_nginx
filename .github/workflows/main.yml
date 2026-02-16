@@ -1,5 +1,4 @@
 name: Deploy Turing Stack
-
 on:
   push:
     branches: [ main ]
@@ -11,61 +10,21 @@ jobs:
       - name: Checkout Código
         uses: actions/checkout@v4
 
-      - name: Mestre de Obras (Infra + Stack)
+      - name: Mestre de Obras (Preparar Terreno)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           script: |
-            # --- 1. GARANTIR DOCKER ---
-            if ! [ -x "$(command -v docker)" ]; then
-              echo "Instalando Docker..."
-              curl -fsSL https://get.docker.com | sh
-              sudo usermod -aG docker ubuntu
-            fi
-
-            # --- 2. GARANTIR SWARM ---
-            if [ "$(sudo docker info --format '{{.Swarm.LocalNodeState}}')" != "active" ]; then
-              echo "Iniciando Swarm..."
-              sudo docker swarm init
-            fi
-
-            # --- 3. GARANTIR REDE E PASTAS ---
+            # 1, 2 e 3: Garantir Docker, Swarm, Redes e Pastas
+            if ! [ -x "$(command -v docker)" ]; then curl -fsSL https://get.docker.com | sh && sudo usermod -aG docker ubuntu; fi
+            if [ "$(sudo docker info --format '{{.Swarm.LocalNodeState}}')" != "active" ]; then sudo docker swarm init; fi
             sudo docker network ls | grep dockermaster || sudo docker network create -d overlay dockermaster
             sudo mkdir -p /var/inetpub/wwwroot/teste-turing
             sudo chown -R ubuntu:ubuntu /var/inetpub/wwwroot/teste-turing
 
-            # --- 4. MATERIALIZAR A STACK (A Palavra se torna arquivo) ---
-            # Usamos aspas simples no EOF para evitar que o shell tente interpretar as crases do Traefik
-            cat <<'EOF' > ~/docker-compose-turing.yml
-            version: "3.9"
-            services:
-              nginx-turing:
-                image: nginx:alpine
-                networks:
-                  - dockermaster
-                volumes:
-                  - /var/inetpub/wwwroot/teste-turing:/usr/share/nginx/html:ro
-                deploy:
-                  mode: replicated
-                  replicas: 1
-                  resources:
-                    limits:
-                      cpus: '0.1'
-                      memory: 32M
-                  labels:
-                    - "traefik.enable=true"
-                    - "traefik.http.routers.teste-turing.rule=Host(`lab.inetz.com.br`)"
-                    - "traefik.http.routers.teste-turing.entrypoints=websecure"
-                    - "traefik.http.routers.teste-turing.tls.certresolver=letsencryptresolver"
-                    - "traefik.http.services.teste-turing.loadbalancer.server.port=80"
-                    - "traefik.docker.network=dockermaster"
-                    - "io.portainer.display.name=Stack-Turing-Alunos"
-            networks:
-              dockermaster:
-                external: true
-            EOF
-
-            # --- 5. EXECUTAR O DEPLOY ---
-            #sudo docker stack deploy -c ~/docker-compose-turing.yml turing
+      - name: Avisar Portainer (A Mágica)
+        run: |
+          # Este comando dá o "cutucão" no Portainer para ele ler o arquivo do Git
+          curl -X POST "${{ secrets.PORTAINER_WEBHOOK_URL }}"
