@@ -37,7 +37,7 @@ jobs:
 
 # 4. Criar o arquivo da Stack no servidor com Labels do Portainer
             cat <<EOF > docker-compose-turing.yml
-            version: '3.8'
+            version: "3.8"
             services:
               nginx-turing:
                 image: nginx:alpine
