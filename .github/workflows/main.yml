@@ -27,4 +27,4 @@ jobs:
       - name: Avisar Portainer (A Mágica)
         run: |
           # Este comando dá o "cutucão" no Portainer para ele ler o arquivo do Git
-          curl -X POST "${{ secrets. https://portainer.inetz.com.br/api/stacks/webhooks/f6a2619b-1b44-40ed-9c9a-552ff997ed6c}}"
+        curl -X POST "${{ secrets.PORTAINER_WEBHOOK_URL }}"
