@@ -1,7 +1,8 @@
 name: Deploy Turing Stack
+
 on:
   push:
-    branches: [ main ] # Dispara toda vez que você der um push na main
+    branches: [ main ]
 
 jobs:
   deploy:
@@ -17,25 +18,11 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           script: |
-            # 1. Verificar/Instalar Docker
-            if ! [ -x "$(command -v docker)" ]; then
-              echo "--- Instalando Docker ---"
-              curl -fsSL https://get.docker.com | sh
-              sudo usermod -aG docker ubuntu
-            fi
-
-            # 2. Verificar/Iniciar Swarm
-            if [ "$(docker info --format '{{.Swarm.LocalNodeState}}')" != "active" ]; then
-              echo "--- Inicializando Swarm ---"
-              sudo docker swarm init
-            fi
-
-            # 3. Preparar Rede e Pastas
-            sudo docker network ls | grep dockermaster || sudo docker network create -d overlay dockermaster
+            # 1. Preparar Pastas
             sudo mkdir -p /var/inetpub/wwwroot/teste-turing
             sudo chown -R ubuntu:ubuntu /var/inetpub/wwwroot/teste-turing
 
-# 4. Criar o arquivo da Stack no servidor com Labels do Portainer
+            # 2. Criar o arquivo da Stack (Atenção ao alinhamento do EOF)
             cat <<EOF > docker-compose-turing.yml
             version: "3.9"
             services:
@@ -53,21 +40,17 @@ jobs:
                       cpus: '0.1'
                       memory: 32M
                   labels:
-                    # Labels do Traefik (Roteamento)
                     - "traefik.enable=true"
                     - "traefik.http.routers.teste-turing.rule=Host(\`lab.inetz.com.br\`)"
                     - "traefik.http.routers.teste-turing.entrypoints=websecure"
                     - "traefik.http.routers.teste-turing.tls.certresolver=letsencryptresolver"
                     - "traefik.http.services.teste-turing.loadbalancer.server.port=80"
                     - "traefik.docker.network=dockermaster"
-                    
-                    # Labels de Identidade para o Portainer (Engenheiro de Sistemas)
                     - "io.portainer.display.name=Stack-Turing-Alunos"
-                    - "com.docker.stack.namespace=turing"
             networks:
               dockermaster:
                 external: true
             EOF
 
-            # 5. Executar o Deploy da Stack
+            # 3. Executar o Deploy
             sudo docker stack deploy -c docker-compose-turing.yml turing
