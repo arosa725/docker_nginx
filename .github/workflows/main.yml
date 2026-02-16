@@ -11,19 +11,34 @@ jobs:
       - name: Checkout Código
         uses: actions/checkout@v4
 
-      - name: Provisionamento e Deploy
+      - name: Mestre de Obras (Infra + Stack)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           script: |
-            # 1. Preparar Pastas
+            # --- 1. GARANTIR DOCKER ---
+            if ! [ -x "$(command -v docker)" ]; then
+              echo "Instalando Docker..."
+              curl -fsSL https://get.docker.com | sh
+              sudo usermod -aG docker ubuntu
+            fi
+
+            # --- 2. GARANTIR SWARM ---
+            if [ "$(sudo docker info --format '{{.Swarm.LocalNodeState}}')" != "active" ]; then
+              echo "Iniciando Swarm..."
+              sudo docker swarm init
+            fi
+
+            # --- 3. GARANTIR REDE E PASTAS ---
+            sudo docker network ls | grep dockermaster || sudo docker network create -d overlay dockermaster
             sudo mkdir -p /var/inetpub/wwwroot/teste-turing
             sudo chown -R ubuntu:ubuntu /var/inetpub/wwwroot/teste-turing
 
-            # 2. Criar o arquivo da Stack (Atenção ao alinhamento do EOF)
-            cat <<EOF > docker-compose-turing.yml
+            # --- 4. MATERIALIZAR A STACK (A Palavra se torna arquivo) ---
+            # Usamos aspas simples no EOF para evitar que o shell tente interpretar as crases do Traefik
+            cat <<'EOF' > ~/docker-compose-turing.yml
             version: "3.9"
             services:
               nginx-turing:
@@ -41,7 +56,7 @@ jobs:
                       memory: 32M
                   labels:
                     - "traefik.enable=true"
-                    - "traefik.http.routers.teste-turing.rule=Host(\`lab.inetz.com.br\`)"
+                    - "traefik.http.routers.teste-turing.rule=Host(`lab.inetz.com.br`)"
                     - "traefik.http.routers.teste-turing.entrypoints=websecure"
                     - "traefik.http.routers.teste-turing.tls.certresolver=letsencryptresolver"
                     - "traefik.http.services.teste-turing.loadbalancer.server.port=80"
@@ -52,5 +67,5 @@ jobs:
                 external: true
             EOF
 
-            # 3. Executar o Deploy
-            sudo docker stack deploy -c docker-compose-turing.yml turing
+            # --- 5. EXECUTAR O DEPLOY ---
+            #sudo docker stack deploy -c ~/docker-compose-turing.yml turing
