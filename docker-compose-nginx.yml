@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  nginx-turing:
+    image: nginx:alpine
+    networks:
+      - dockermaster
+    volumes:
+      - /var/inetpub/wwwroot/teste-turing:/usr/share/nginx/html:ro
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 32M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.teste-turing.rule=Host(`lab.inetz.com.br`)"
+        - "traefik.http.routers.teste-turing.entrypoints=websecure"
+        - "traefik.http.routers.teste-turing.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.teste-turing.loadbalancer.server.port=80"
+        - "traefik.docker.network=dockermaster"
+        - "io.portainer.display.name=Stack-Turing-Alunos"
+networks:
+  dockermaster:
+    external: true
