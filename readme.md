@@ -23,7 +23,7 @@ Projeto de IA (Python/Prompts): https://lab.inetz.com.br/projetos/[seu-RA]/ia
 
 🛠️ Configuração do GitHub Actions
 Para ativar a publicação automática, você deve criar um arquivo no seu repositório no caminho .github/workflows/main.yml e colar o código abaixo exatamente como está:
-
+```
 name: Deploy para Inetz
 
 on:
@@ -45,6 +45,8 @@ uses: actions/checkout@v4
       key: ${{ secrets.SSH_KEY }}
       source: "."
       target: "/var/inetpub/wwwroot/projetos/${{ secrets.ALUNO_RA }}/turing"
+```
+
 🔑 Como configurar as Variáveis (Secrets)
 Para que o GitHub consiga conversar com o servidor da Inetz, você precisa cadastrar as credenciais de acesso (Secrets). Siga estes passos:
 
