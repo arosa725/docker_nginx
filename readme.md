@@ -1,7 +1,8 @@
-🚀 Guia de Publicação: Ecossistema de Projetos Inetz
+# 🚀 Guia de Publicação: Ecossistema de Projetos
+
 Olá, aluno! Bem-vindo ao laboratório de desenvolvimento da Inetz. Aqui, seu aprendizado vai além do código: você utilizará um fluxo profissional de Integração e Entrega Contínua (CI/CD).
 
-💡 O Conceito de Integração
+## 💡 O Conceito de Integração
 Neste ambiente, o seu código percorre um caminho automatizado e profissional:
 
 GitHub: É a sua mesa de trabalho onde você versiona e organiza seu código.
@@ -10,7 +11,7 @@ GitHub Actions: É o "robô" de transporte. Sempre que você faz um push na bran
 
 Servidor Inetz: É o destino final, onde seu projeto ganha vida e fica disponível para a internet através do domínio lab.inetz.com.br.
 
-📂 Estrutura de URLs e Pastas
+## 📂 Estrutura de URLs e Pastas
 Sua URL oficial é organizada pelo seu RA (Registro Acadêmico). Cada disciplina ou atividade será uma subpasta dentro do seu espaço exclusivo:
 
 Raiz do seu espaço: https://lab.inetz.com.br/projetos/[seu-RA]
@@ -21,7 +22,8 @@ Projeto Back-end (Node.js/Express): https://lab.inetz.com.br/projetos/[seu-RA]/b
 
 Projeto de IA (Python/Prompts): https://lab.inetz.com.br/projetos/[seu-RA]/ia
 
-🛠️ Configuração do GitHub Actions
+## 🛠️ Configuração do GitHub Actions
+
 Para ativar a publicação automática, você deve criar um arquivo no seu repositório no caminho .github/workflows/main.yml e colar o código abaixo exatamente como está:
 ```
 name: Deploy para Inetz
