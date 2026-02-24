@@ -29,13 +29,13 @@ Servidor Inetz: É o destino final, onde seu projeto ganha vida e fica disponív
 ## 📂 Estrutura de URLs e Pastas
 Sua URL oficial é organizada pelo seu RA (Registro Acadêmico). Cada disciplina ou atividade será uma subpasta dentro do seu espaço exclusivo:
 
-*Raiz do seu espaço: https://lab.inetz.com.br/projetos/[seu-RA]
+* Raiz do seu espaço: https://lab.inetz.com.br/projetos/[seu-RA]
 
-*Projeto Turing (Front-end): https://lab.inetz.com.br/projetos/[seu-RA]/turing
+* Projeto Turing (Front-end): https://lab.inetz.com.br/projetos/[seu-RA]/turing
 
-*Projeto Back-end (Node.js/Express): https://lab.inetz.com.br/projetos/[seu-RA]/back-end
+* Projeto Back-end (Node.js/Express): https://lab.inetz.com.br/projetos/[seu-RA]/back-end
 
-*Projeto de IA (Python/Prompts): https://lab.inetz.com.br/projetos/[seu-RA]/ia
+* Projeto de IA (Python/Prompts): https://lab.inetz.com.br/projetos/[seu-RA]/ia
 
 ## 🛠️ Configuração do GitHub Actions
 
