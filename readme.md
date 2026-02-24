@@ -75,22 +75,22 @@ Clique no botão verde New repository secret.
 
 Você deve criar três segredos, preenchendo o nome e o valor conforme abaixo:
 
-[] SSH_HOST: O endereço IP ou domínio do servidor fornecido pelo professor.
+* SSH_HOST: O endereço IP ou domínio do servidor fornecido pelo professor.
 
-[] SSH_KEY: Abra o arquivo key_alunos, copie TODO o texto da chave privada e cole aqui.
+* SSH_KEY: Abra o arquivo key_alunos, copie TODO o texto da chave privada e cole aqui.
 
-[] ALUNO_RA: Digite apenas os números do seu RA (Ex: 00001106610611).
+* ALUNO_RA: Digite apenas os números do seu RA (Ex: 00001106610611).
 
 Importante: Clique em Add secret para salvar cada uma delas individualmente.
 
-🎓 Identidade Estudantil e Projetos Multidisciplinares
+## 🎓 Identidade Estudantil e Projetos Multidisciplinares
 Este ecossistema foi desenhado para integrar todas as suas aulas. O seu RA é a sua chave de acesso:
 
-Seu RA: 00001106610611
+### Seu RA: 00001106610611
 
-Seu E-mail Institucional: 00001106610611SP@al.educacao.sp.gov.br
+### Seu E-mail Institucional: 00001106610611SP@al.educacao.sp.gov.br
 
 Os projetos multidisciplinares unirão seu conhecimento de Front-end, Back-end e IA. Tudo o que você produzir ficará centralizado na sua pasta de projetos, criando um portfólio real de desenvolvedor.
 
-A Palavra é Integração.
+
 Foque no código, aprenda a lógica e deixe que a automação cuide da infraestrutura. Bons estudos!
