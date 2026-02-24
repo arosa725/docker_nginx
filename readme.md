@@ -29,7 +29,7 @@ Servidor Inetz: É o destino final, onde seu projeto ganha vida e fica disponív
 ## 📂 Estrutura de URLs e Pastas
 Sua URL oficial é organizada pelo seu RA (Registro Acadêmico). Cada disciplina ou atividade será uma subpasta dentro do seu espaço exclusivo:
 
-* Raiz do seu espaço: https://lab.inetz.com.br/projetos/[seu-RA] *
+* Raiz do seu espaço: https://lab.inetz.com.br/projetos/[seu-RA] 
 
 * Projeto Turing (Front-end): https://lab.inetz.com.br/projetos/[seu-RA]/turing
 
@@ -75,11 +75,11 @@ Clique no botão verde New repository secret.
 
 Você deve criar três segredos, preenchendo o nome e o valor conforme abaixo:
 
-SSH_HOST: O endereço IP ou domínio do servidor fornecido pelo professor.
+[ ] SSH_HOST: O endereço IP ou domínio do servidor fornecido pelo professor.
 
-SSH_KEY: Abra o arquivo key_alunos, copie TODO o texto da chave privada e cole aqui.
+[ ] SSH_KEY: Abra o arquivo key_alunos, copie TODO o texto da chave privada e cole aqui.
 
-ALUNO_RA: Digite apenas os números do seu RA (Ex: 00001106610611).
+[ ] ALUNO_RA: Digite apenas os números do seu RA (Ex: 00001106610611).
 
 Importante: Clique em Add secret para salvar cada uma delas individualmente.
 
