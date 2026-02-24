@@ -1,6 +1,21 @@
 # 🚀 Guia de Publicação: Ecossistema de Projetos
 
-Olá, aluno! Bem-vindo ao laboratório de desenvolvimento da Inetz. Aqui, seu aprendizado vai além do código: você utilizará um fluxo profissional de Integração e Entrega Contínua (CI/CD).
+Olá, aluno! Bem-vindo ao laboratório de desenvolvimento da Disciplina de Versionamento e Mensageria. Aqui, seu aprendizado vai além do código: você utilizará um fluxo profissional de Integração e Entrega Contínua (CI/CD).
+
+## 1. O Problema: "Na minha máquina funciona"
+Antes do CI/CD, o processo de deploy era manual e arriscado. O desenvolvedor terminava o código, enviava os arquivos e torcia para que a configuração do servidor fosse igual à dele. Se algo desse errado, o sistema caía e o "rollback" era um pesadelo.
+
+## 2. O que é CI e CD?
+
+** CI: ** Continuous Integration (Integração Contínua)
+É a prática de integrar o código em um repositório compartilhado várias vezes ao dia. Cada integração é verificada por um build automatizado e testes, permitindo que a equipe detecte problemas rapidamente.
+
+Foco: Qualidade do código e evitar conflitos.
+
+CD: Continuous Delivery & Deployment (Entrega/Implantação Contínua)
+Delivery: O código está sempre pronto para ir para produção, mas o "botão de deploy" é apertado manualmente por um humano.
+
+Deployment: Todo código que passa nos testes é implantado automaticamente em produção. Sem intervenção humana.
 
 ## 💡 O Conceito de Integração
 Neste ambiente, o seu código percorre um caminho automatizado e profissional:
