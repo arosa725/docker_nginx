@@ -7,7 +7,7 @@ Antes do CI/CD, o processo de deploy era manual e arriscado. O desenvolvedor ter
 
 ## 2. O que é CI e CD?
 
-** CI: ** Continuous Integration (Integração Contínua)
+* CI: * Continuous Integration (Integração Contínua)
 É a prática de integrar o código em um repositório compartilhado várias vezes ao dia. Cada integração é verificada por um build automatizado e testes, permitindo que a equipe detecte problemas rapidamente.
 
 Foco: Qualidade do código e evitar conflitos.
