@@ -7,12 +7,12 @@ Antes do CI/CD, o processo de deploy era manual e arriscado. O desenvolvedor ter
 
 ## 2. O que é CI e CD?
 
-* CI: * Continuous Integration (Integração Contínua)
+**CI:** Continuous Integration (Integração Contínua)
 É a prática de integrar o código em um repositório compartilhado várias vezes ao dia. Cada integração é verificada por um build automatizado e testes, permitindo que a equipe detecte problemas rapidamente.
 
 Foco: Qualidade do código e evitar conflitos.
 
-CD: Continuous Delivery & Deployment (Entrega/Implantação Contínua)
+**CD:** Continuous Delivery & Deployment (Entrega/Implantação Contínua)
 Delivery: O código está sempre pronto para ir para produção, mas o "botão de deploy" é apertado manualmente por um humano.
 
 Deployment: Todo código que passa nos testes é implantado automaticamente em produção. Sem intervenção humana.
@@ -29,13 +29,13 @@ Servidor Inetz: É o destino final, onde seu projeto ganha vida e fica disponív
 ## 📂 Estrutura de URLs e Pastas
 Sua URL oficial é organizada pelo seu RA (Registro Acadêmico). Cada disciplina ou atividade será uma subpasta dentro do seu espaço exclusivo:
 
-Raiz do seu espaço: https://lab.inetz.com.br/projetos/[seu-RA]
+*Raiz do seu espaço: https://lab.inetz.com.br/projetos/[seu-RA]
 
-Projeto Turing (Front-end): https://lab.inetz.com.br/projetos/[seu-RA]/turing
+*Projeto Turing (Front-end): https://lab.inetz.com.br/projetos/[seu-RA]/turing
 
-Projeto Back-end (Node.js/Express): https://lab.inetz.com.br/projetos/[seu-RA]/back-end
+*Projeto Back-end (Node.js/Express): https://lab.inetz.com.br/projetos/[seu-RA]/back-end
 
-Projeto de IA (Python/Prompts): https://lab.inetz.com.br/projetos/[seu-RA]/ia
+*Projeto de IA (Python/Prompts): https://lab.inetz.com.br/projetos/[seu-RA]/ia
 
 ## 🛠️ Configuração do GitHub Actions
 
@@ -64,7 +64,7 @@ uses: actions/checkout@v4
       target: "/var/inetpub/wwwroot/projetos/${{ secrets.ALUNO_RA }}/turing"
 ```
 
-🔑 Como configurar as Variáveis (Secrets)
+## 🔑 Como configurar as Variáveis (Secrets)
 Para que o GitHub consiga conversar com o servidor da Inetz, você precisa cadastrar as credenciais de acesso (Secrets). Siga estes passos:
 
 No seu repositório do GitHub, clique na aba Settings (Configurações) na barra superior.
