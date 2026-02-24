@@ -29,7 +29,7 @@ Servidor Inetz: É o destino final, onde seu projeto ganha vida e fica disponív
 ## 📂 Estrutura de URLs e Pastas
 Sua URL oficial é organizada pelo seu RA (Registro Acadêmico). Cada disciplina ou atividade será uma subpasta dentro do seu espaço exclusivo:
 
-* Raiz do seu espaço: https://lab.inetz.com.br/projetos/[seu-RA]
+* Raiz do seu espaço: https://lab.inetz.com.br/projetos/[seu-RA] *
 
 * Projeto Turing (Front-end): https://lab.inetz.com.br/projetos/[seu-RA]/turing
 
